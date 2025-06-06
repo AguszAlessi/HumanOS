@@ -1,0 +1,64 @@
+como ya sabes, en el juego sos un personaje en miniatura. queremos hacer una mision en la que estes dentro de una arteria o vena, en la que recibas un medicamento antiviral y que haya un virus que destruir. En el nivel el jugador deberia tener que utilizar el medicamento antiviral para destruir al virus y despues cumplir distintas funciones del globulo blanco como limpiar el resto de los virus o generar memoria para prevenir al virus, etc
+ChatGPT Plus
+Perfecto, la idea es muy sólida y permite una experiencia inmersiva y educativa. A continuación te propongo una estructura de misión que combina narrativa, mecánicas de juego y objetivos pedagógicos, dentro del concepto de estar en una arteria/vena con enfoque inmunológico:
+
+🦠 Misión: Defensa en la Corriente
+Ubicación: Torrente sanguíneo (vena cava o arteria pulmonar, por ejemplo).
+Objetivo principal: Utilizar un medicamento antiviral para eliminar un virus activo y luego activar funciones del sistema inmune adaptativo.
+
+🎯 Etapas de la Misión
+1. Introducción narrativa (Briefing del sistema inmunológico)
+El jugador es un glóbulo blanco (leucocito especializado).
+
+Recibe una inyección de un medicamento antiviral (ej. interferón o inhibidor específico).
+
+Voz en off o HUD: "¡Un virus ha entrado en el torrente! Tu misión es contenerlo y preparar el cuerpo para futuras amenazas."
+
+2. Fase 1: Navegación y reconocimiento
+Mecanismo de propulsión por el flujo sanguíneo, con control limitado de movimiento.
+
+Debes localizar al virus principal (representado como un agente invasor más grande, con animación agresiva).
+
+Virus menores lo rodean (podrían ser partículas virales o copias en replicación).
+
+3. Fase 2: Uso del antiviral
+El jugador tiene un “dispositivo de administración” (podría ser una interfaz en el brazo o una pistola VR simbólica).
+
+Debe disparar el antiviral a las zonas correctas del virus (núcleo de ARN, enzimas, etc).
+
+Mecánica tipo “puzzle”: elegir correctamente el momento o la zona para aplicar (con penalización si se falla).
+
+4. Fase 3: Funciones del glóbulo blanco
+Una vez eliminado el virus activo:
+
+Fagocitosis: el jugador debe absorber restos virales.
+
+Activación de linfocitos T y B:
+
+Interactuar con células para “enseñarles” sobre el virus.
+
+Animación de "transferencia de información inmunológica".
+
+Memoria inmunológica:
+
+El jugador guarda una "copia" del virus en su base de datos celular.
+
+Esto desbloquea mejoras futuras (en mecánicas o habilidades).
+
+🧠 Objetivos educativos integrados
+Comprensión del funcionamiento del antiviral.
+
+Diferencia entre respuesta innata y adaptativa.
+
+Rol del sistema inmune en prevención futura.
+
+Importancia de la memoria inmunológica.
+
+🛠️ Mecánicas sugeridas en Unity VR
+Interacción por mirada o manos para elegir entre tipos de células o blancos virales.
+
+HUD con info médica interactiva al estilo de un escáner (cuando apuntas al virus, te dice su tipo, estructura, etc).
+
+Eventos en tiempo real: si el jugador tarda mucho, el virus se replica → aumenta dificultad.
+
+¿Querés que prepare un diagrama de flujo de nivel, un mapa visual, o los assets clave que deberían aparecer? También puedo ayudarte a integrar esto al timeline del proyecto académico.
