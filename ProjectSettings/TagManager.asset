@@ -29,6 +29,8 @@ TagManager:
   - SamplesInfoPanel
   - QDSUIToggleCheckboxRadio
   - Ground
+  - Virus
+  - Antivirus
   layers:
   - Default
   - TransparentFX
