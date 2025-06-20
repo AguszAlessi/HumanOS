@@ -1,33 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
+using Oculus;  // Asegúrate de tener el namespace de Oculus Integration si es necesario
 
-public class PlayerMovement : MonoBehaviour
+public class ZeroGMovement : MonoBehaviour
 {
-    public XRNode inputSource = XRNode.LeftHand;
-    public float speed = 3f;
-    private Vector2 inputAxis;
-
+    [Header("Configuración de movimiento")]
+    public float moveSpeed = 3.0f;          // Velocidad en metros/segundo
+    public Transform headTransform;         // Referencia a la cámara (HMD) del jugador
     private Rigidbody rb;
-    public Transform cameraTransform;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        // Asegurarse de que la gravedad esté desactivada
+        rb.useGravity = false;
+        rb.drag = 0f;  // Puedes ajustar o quitar esta línea según la resistencia deseada
+        // Bloquear rotaciones para evitar vuelcos indeseados
+        rb.freezeRotation = true;
     }
 
     void Update()
     {
-        InputDevice device = InputDevices.GetDeviceAtXRNode(inputSource);
-        if (device.TryGetFeatureValue(CommonUsages.primary2DAxis, out inputAxis))
-        {
-            // Dirección completa basada en la cámara, incluyendo inclinación
-            Vector3 moveDirection = (cameraTransform.forward * inputAxis.y + cameraTransform.right * inputAxis.x).normalized;
+        // Leer el input del joystick (eje 2D del thumbstick izquierdo)
+        Vector3 input = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.LTouch);
 
-            // Movimiento real en 3D (con altura incluida)
-            Vector3 movement = moveDirection * speed * Time.deltaTime;
-            rb.MovePosition(rb.position + movement);
+        // Calcular la dirección de movimiento basada en la orientación del HMD
+        Vector3 direction = Vector3.zero;
+        if (headTransform != null)
+        {
+            Vector3 forward = headTransform.forward;
+            Vector3 right = headTransform.right;
+            // Usar la dirección de mirada (forward) para el eje vertical del stick,
+            // y la derecha de la mirada (right) para el eje horizontal.
+            direction = forward * input.y + right * input.x;
+            direction.Normalize(); // Opcional: normalizar para impedir velocidades diagonales más altas
         }
+
+        // Calcular la velocidad deseada
+        Vector3 desiredVelocity = direction * moveSpeed;
+        
+        // Opcional: Si no hay input, opcionalmente frenar (por ejemplo, podría interpolar velocidad a cero)
+        // En este caso, si no hay input el desiredVelocity será un vector cero (porque direction será zero).
+        
+        // Asignar la velocidad al Rigidbody (movimiento basado en física)
+        rb.velocity = desiredVelocity;
     }
 }
