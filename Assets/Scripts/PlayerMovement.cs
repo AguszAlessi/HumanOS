@@ -1,5 +1,5 @@
 using UnityEngine;
-using Oculus;  // Asegúrate de tener el namespace de Oculus Integration si es necesario
+
 
 public class ZeroGMovement : MonoBehaviour
 {
@@ -11,6 +11,10 @@ public class ZeroGMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        if (headTransform == null && Camera.main != null)
+        {
+            headTransform = Camera.main.transform;
+        }
         // Asegurarse de que la gravedad esté desactivada
         rb.useGravity = false;
         rb.drag = 0f;  // Puedes ajustar o quitar esta línea según la resistencia deseada
