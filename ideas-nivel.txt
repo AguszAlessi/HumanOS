@@ -9,56 +9,64 @@ Objetivo principal: Utilizar un medicamento antiviral para eliminar un virus act
 🎯 Etapas de la Misión
 1. Introducción narrativa (Briefing del sistema inmunológico)
 El jugador es un glóbulo blanco (leucocito especializado).
-
 Recibe una inyección de un medicamento antiviral (ej. interferón o inhibidor específico).
-
 Voz en off o HUD: "¡Un virus ha entrado en el torrente! Tu misión es contenerlo y preparar el cuerpo para futuras amenazas."
 
 2. Fase 1: Navegación y reconocimiento
 Mecanismo de propulsión por el flujo sanguíneo, con control limitado de movimiento.
-
 Debes localizar al virus principal (representado como un agente invasor más grande, con animación agresiva).
-
 Virus menores lo rodean (podrían ser partículas virales o copias en replicación).
 
 3. Fase 2: Uso del antiviral
 El jugador tiene un “dispositivo de administración” (podría ser una interfaz en el brazo o una pistola VR simbólica).
-
 Debe disparar el antiviral a las zonas correctas del virus (núcleo de ARN, enzimas, etc).
-
 Mecánica tipo “puzzle”: elegir correctamente el momento o la zona para aplicar (con penalización si se falla).
 
 4. Fase 3: Funciones del glóbulo blanco
 Una vez eliminado el virus activo:
-
 Fagocitosis: el jugador debe absorber restos virales.
-
 Activación de linfocitos T y B:
-
 Interactuar con células para “enseñarles” sobre el virus.
-
 Animación de "transferencia de información inmunológica".
 
 Memoria inmunológica:
-
 El jugador guarda una "copia" del virus en su base de datos celular.
-
 Esto desbloquea mejoras futuras (en mecánicas o habilidades).
 
 🧠 Objetivos educativos integrados
 Comprensión del funcionamiento del antiviral.
-
 Diferencia entre respuesta innata y adaptativa.
-
 Rol del sistema inmune en prevención futura.
-
 Importancia de la memoria inmunológica.
 
 🛠️ Mecánicas sugeridas en Unity VR
 Interacción por mirada o manos para elegir entre tipos de células o blancos virales.
-
 HUD con info médica interactiva al estilo de un escáner (cuando apuntas al virus, te dice su tipo, estructura, etc).
-
 Eventos en tiempo real: si el jugador tarda mucho, el virus se replica → aumenta dificultad.
 
-¿Querés que prepare un diagrama de flujo de nivel, un mapa visual, o los assets clave que deberían aparecer? También puedo ayudarte a integrar esto al timeline del proyecto académico.
+---------------------------------------------------------------------------------------------------------------------------MUSICA----------------------------------------------------------------------------------------------------------------------------------------------
+
+🫁 Sistema Respiratorio
+Estilo: Respiraciones suaves, pads etéreos, sonidos de aire y viento.
+Mood: Ligero, flotante, como si el jugador estuviera en una nube de alveolos.
+Inspiración: "Breathe In" – música chill con sonidos de viento y respiración.
+
+🧠 Sistema Nervioso / Cerebro
+Estilo: Glitches rítmicos, pulsos eléctricos, tonos binaurales, sintetizadores cerebrales.
+Mood: Misterioso, cerebral, introspectivo.
+Inspiración: Control OST o Deus Ex.
+
+🫀 Sistema Circulatorio
+Estilo: Percusión basada en latidos, cuerdas tensas, bajos pulsantes.
+Mood: Rítmico y con sensación de urgencia, pero controlada.
+Inspiración: Requiem for a Dream (Clint Mansell), versión suave.
+
+🍔 Sistema Digestivo
+Estilo: Más animado, sonidos burbujeantes o líquidos, música juguetona con tonos graves.
+Mood: Extraño pero simpático.
+Inspiración: LittleBigPlanet o Rayman Origins OST (nivel “gastrointestinal” 🦠😂)
+
+🧬 Sistema Inmunológico / Nivel de combate contra virus
+Estilo: Más épico y activo. Percusión electrónica, sintes oscuros, cuerdas dramáticas.
+Mood: Batalla microscópica.
+Inspiración: Halo ambient combat music o Mass Effect combat themes.
