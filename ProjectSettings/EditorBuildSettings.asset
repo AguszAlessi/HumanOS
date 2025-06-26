@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 4f62549f77a50614a8eaea176522c4ce
   - enabled: 1
-    path: Assets/Scenes/Juego.unity
+    path: Assets/Scenes/ArteryGame.unity
     guid: 10e218c5966a91946ad5db850460b01e
   - enabled: 1
     path: Assets/Scenes/Victory.unity

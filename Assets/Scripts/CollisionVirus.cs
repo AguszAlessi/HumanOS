@@ -1,17 +1,17 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
 
 public class CollisionVirus : MonoBehaviour
 {
     public GameObject virus;
-    public float fadeDuration = 1.0f; // Duración del desvanecimiento
+    public float fadeDuration = 1.0f;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.name == "antivirus")
+        if (other.CompareTag("VirusCollision"))
         {
             Destroy(virus);
-            SceneManager.LoadScene("Victory"); // Cambia a la escena Victory
+            SceneManager.LoadScene("Victory");
         }
     }
 }
