@@ -44,7 +44,7 @@ Interacción por mirada o manos para elegir entre tipos de células o blancos vi
 HUD con info médica interactiva al estilo de un escáner (cuando apuntas al virus, te dice su tipo, estructura, etc).
 Eventos en tiempo real: si el jugador tarda mucho, el virus se replica → aumenta dificultad.
 
----------------------------------------------------------------------------------------------------------------------------MUSICA----------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------MUSICA------------------------------------------------------------------------------------
 
 🫁 Sistema Respiratorio
 Estilo: Respiraciones suaves, pads etéreos, sonidos de aire y viento.
@@ -70,3 +70,7 @@ Inspiración: LittleBigPlanet o Rayman Origins OST (nivel “gastrointestinal”
 Estilo: Más épico y activo. Percusión electrónica, sintes oscuros, cuerdas dramáticas.
 Mood: Batalla microscópica.
 Inspiración: Halo ambient combat music o Mass Effect combat themes.
+
+---------------------------------------------------------------------------------------------------------------------------Splash screen-----------------------------------------------------------------------------
+
+VR Splash Screen | Unity Tutorial for Oculus Quest: https://youtu.be/HghH5hw1h2Y
