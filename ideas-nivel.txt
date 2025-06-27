@@ -74,3 +74,4 @@ Inspiración: Halo ambient combat music o Mass Effect combat themes.
 ---------------------------------------------------------------------------------------------------------------------------Splash screen-----------------------------------------------------------------------------
 
 VR Splash Screen | Unity Tutorial for Oculus Quest: https://youtu.be/HghH5hw1h2Y
+Audio: Awake  Tycho  Instrumental
