@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour
     public void Play()
     {
         
-        StartCoroutine(Loading("Juego"));
+        StartCoroutine(Loading("ArteryGame"));
     }
 
 

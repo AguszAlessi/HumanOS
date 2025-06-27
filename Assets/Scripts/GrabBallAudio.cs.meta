@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 7e8d650263f7df14b95d9fcd5bc85fb1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - grabSound: {fileID: 8300000, guid: 4ae2402bebcf9c04385e2c6a652ab8f9, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
