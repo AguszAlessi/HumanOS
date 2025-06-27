@@ -11559,7 +11559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e8d650263f7df14b95d9fcd5bc85fb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabSound: {fileID: 8300000, guid: 4ae2402bebcf9c04385e2c6a652ab8f9, type: 3}
+  grabBallAudio: {fileID: 0}
 --- !u!114 &1474976806
 MonoBehaviour:
   m_ObjectHideFlags: 0
