@@ -1,25 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class GrabSound : MonoBehaviour
 {
-    private OVRGrabbable grabbable;
+    public AudioClip grabBallAudio;
     private AudioSource audioSource;
+    private XRGrabInteractable grabInteractable;
 
-    public AudioClip grabSound;
-
-    void Start()
+    void Awake()
     {
-        grabbable = GetComponent<OVRGrabbable>();
         audioSource = GetComponent<AudioSource>();
+        grabInteractable = GetComponent<XRGrabInteractable>();
+
+        if (grabInteractable != null)
+        {
+            grabInteractable.selectEntered.AddListener(OnGrab);
+        }
     }
 
-    void Update()
+    void OnGrab(SelectEnterEventArgs args)
     {
-        if (grabbable != null && grabbable.isGrabbed && !audioSource.isPlaying)
+        if (grabBallAudio != null && audioSource != null)
         {
-            audioSource.PlayOneShot(grabSound);
+            audioSource.PlayOneShot(grabBallAudio);
         }
     }
 }
