@@ -1,3 +1,6 @@
+// Asumiendo que ya tenés correctamente conectado el script y los paneles desde el Inspector
+// y que tu slider de carga está dentro de "LoadingScreen_Canvas"
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,12 +15,16 @@ public class MainMenu : MonoBehaviour
 
     [Header("Opcional: Slider de carga")]
     [SerializeField] private Slider sliderCarga;
+    [SerializeField] private Text loadingText; // Para mostrar "Cargando..."
 
     private void Start()
     {
         panelMainMenu.SetActive(true);
         panelSettings.SetActive(false);
         loadingPanel.SetActive(false);
+
+        if (loadingText != null)
+            loadingText.text = "";
     }
 
     public void Play()
@@ -30,6 +37,9 @@ public class MainMenu : MonoBehaviour
         panelMainMenu.SetActive(false);
         panelSettings.SetActive(false);
         loadingPanel.SetActive(true);
+
+        if (loadingText != null)
+            loadingText.text = "Cargando...";
 
         AsyncOperation operacion = SceneManager.LoadSceneAsync(sceneName);
 
@@ -44,7 +54,6 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    // Resto de tus métodos para Settings, ReturnMenu y Quit...
     public void Settings()
     {
         panelMainMenu.SetActive(false);
