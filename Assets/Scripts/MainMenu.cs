@@ -1,66 +1,55 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI; 
+using UnityEngine.UI;
 using System.Collections;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject panelMainMenu;
-    public GameObject panelSettings;
-    public GameObject LoadingPanel;
-    public Slider sliderCarga;
+    [Header("Paneles")]
+    [SerializeField] private GameObject panelMainMenu;
+    [SerializeField] private GameObject panelSettings;
+    [SerializeField] private GameObject loadingPanel;
 
-    void Start()
+    [Header("Opcional: Slider de carga")]
+    [SerializeField] private Slider sliderCarga;
+
+    private void Start()
     {
-        
         panelMainMenu.SetActive(true);
         panelSettings.SetActive(false);
-        LoadingPanel.SetActive(false);
+        loadingPanel.SetActive(false);
     }
 
     public void Play()
     {
-        
-        StartCoroutine(Loading("ArteryGame"));
+        StartCoroutine(LoadSceneAsync("ArteryGame"));
     }
 
-
-IEnumerator Loading(string SceneName)
-{
-    // Activamos el panel de carga
-    LoadingPanel.SetActive(true);
-
-    // Aseguramos que los demás paneles se oculten
-    panelSettings.SetActive(false);
-    panelMainMenu.SetActive(false);
-
-    // Fondo negro visible (asegúrate que sea un Image negro en el panel)
-    // Se puede poner por Inspector, no hace falta hacer nada en código
-
-    // Comenzamos la carga asíncrona
-    AsyncOperation operacion = SceneManager.LoadSceneAsync(SceneName);
-
-    // Esperamos mientras se carga
-    while (!operacion.isDone)
+    private IEnumerator LoadSceneAsync(string sceneName)
     {
-        float progreso = Mathf.Clamp01(operacion.progress / 0.9f);
-        sliderCarga.value = progreso;
-        yield return null;
+        panelMainMenu.SetActive(false);
+        panelSettings.SetActive(false);
+        loadingPanel.SetActive(true);
+
+        AsyncOperation operacion = SceneManager.LoadSceneAsync(sceneName);
+
+        while (!operacion.isDone)
+        {
+            if (sliderCarga != null)
+            {
+                float progreso = Mathf.Clamp01(operacion.progress / 0.9f);
+                sliderCarga.value = progreso;
+            }
+            yield return null;
+        }
     }
-}
 
-public void Settings()
-{
-    Debug.Log("⚙️ Se presionó el botón de Settings");
-
-    panelMainMenu.SetActive(false);
-    panelSettings.SetActive(true);
-
-    Debug.Log("MAIN activo? " + panelMainMenu.activeSelf);
-    Debug.Log("SETTINGS activo? " + panelSettings.activeSelf);
-}
-
-
+    // Resto de tus métodos para Settings, ReturnMenu y Quit...
+    public void Settings()
+    {
+        panelMainMenu.SetActive(false);
+        panelSettings.SetActive(true);
+    }
 
     public void ReturnMenu()
     {
@@ -71,8 +60,8 @@ public void Settings()
     public void Quit()
     {
         Application.Quit();
-#if UNITY_EDITOR
+    #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-#endif
+    #endif
     }
 }
