@@ -1,6 +1,3 @@
-// Asumiendo que ya tenés correctamente conectado el script y los paneles desde el Inspector
-// y que tu slider de carga está dentro de "LoadingScreen_Canvas"
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,9 +10,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject panelSettings;
     [SerializeField] private GameObject loadingPanel;
 
-    [Header("Opcional: Slider de carga")]
+    [Header("Slider y Texto de carga")]
     [SerializeField] private Slider sliderCarga;
-    [SerializeField] private Text loadingText; // Para mostrar "Cargando..."
+    [SerializeField] private Text loadingText;
 
     private void Start()
     {
@@ -27,23 +24,33 @@ public class MainMenu : MonoBehaviour
             loadingText.text = "";
     }
 
+    // Esta función debe estar vinculada al botón Btn_PlayCampaign
     public void Play()
     {
         StartCoroutine(LoadSceneAsync("ArteryGame"));
     }
 
+    // Esta función puede ser llamada por Btn_ExitMenu en la escena del juego
+    public void ReturnToMainMenu()
+    {
+        StartCoroutine(LoadSceneAsync("MainMenu"));
+    }
+
     private IEnumerator LoadSceneAsync(string sceneName)
     {
-        panelMainMenu.SetActive(false);
-        panelSettings.SetActive(false);
-        loadingPanel.SetActive(true);
+        panelMainMenu?.SetActive(false);
+        panelSettings?.SetActive(false);
+        loadingPanel?.SetActive(true);
 
         if (loadingText != null)
             loadingText.text = "Cargando...";
 
-        AsyncOperation operacion = SceneManager.LoadSceneAsync(sceneName);
+        yield return new WaitForSeconds(1f); // para que se vea
 
-        while (!operacion.isDone)
+        AsyncOperation operacion = SceneManager.LoadSceneAsync(sceneName);
+        operacion.allowSceneActivation = false;
+
+        while (operacion.progress < 0.9f)
         {
             if (sliderCarga != null)
             {
@@ -52,25 +59,11 @@ public class MainMenu : MonoBehaviour
             }
             yield return null;
         }
-    }
 
-    public void Settings()
-    {
-        panelMainMenu.SetActive(false);
-        panelSettings.SetActive(true);
-    }
+        if (sliderCarga != null)
+            sliderCarga.value = 1f;
 
-    public void ReturnMenu()
-    {
-        panelSettings.SetActive(false);
-        panelMainMenu.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        operacion.allowSceneActivation = true;
     }
-
-    public void Quit()
-    {
-        Application.Quit();
-    #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-    #endif
-    }
-}
+} 
