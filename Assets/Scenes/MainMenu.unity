@@ -294,7 +294,7 @@ MonoBehaviour:
   panelMainMenu: {fileID: 1159698923}
   panelSettings: {fileID: 1117661740}
   loadingPanel: {fileID: 127652826}
-  sliderCarga: {fileID: 0}
+  sliderCarga: {fileID: 597666892}
   loadingText: {fileID: 0}
 --- !u!1 &127652826
 GameObject:
@@ -308,6 +308,7 @@ GameObject:
   - component: {fileID: 127652829}
   - component: {fileID: 127652828}
   - component: {fileID: 127652827}
+  - component: {fileID: 127652831}
   m_Layer: 0
   m_Name: loadingPanel
   m_TagString: Untagged
@@ -354,7 +355,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &127652829
 Canvas:
   m_ObjectHideFlags: 0
@@ -364,7 +365,7 @@ Canvas:
   m_GameObject: {fileID: 127652826}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -386,8 +387,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 127652826}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1.33}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 597666891}
@@ -396,9 +397,22 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -4.13}
+  m_SizeDelta: {x: 600, y: 600}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &127652831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127652826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff489cf2a6c6fb645b8f7d80ed55b0c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceFromCamera: 2
 --- !u!1 &177406741
 GameObject:
   m_ObjectHideFlags: 0
@@ -1722,8 +1736,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelMainMenu: {fileID: 1159698923}
   panelSettings: {fileID: 1117661740}
-  loadingPanel: {fileID: 0}
-  sliderCarga: {fileID: 0}
+  loadingPanel: {fileID: 127652826}
+  sliderCarga: {fileID: 597666892}
   loadingText: {fileID: 0}
 --- !u!1 &302642450
 GameObject:
@@ -3096,19 +3110,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 597666890}
-  m_LocalRotation: {x: 0.016280178, y: 0.0635558, z: -0.0058893305, w: -0.9978281}
-  m_LocalPosition: {x: 0, y: 0, z: -50.40959}
-  m_LocalScale: {x: 0.020000007, y: 0.02, z: 0.019999998}
+  m_LocalRotation: {x: -0.006910601, y: -0.99985015, z: -0.015872808, w: 0.00010970708}
+  m_LocalPosition: {x: 0, y: 0, z: -167}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 95601001}
   - {fileID: 2039287145}
   - {fileID: 1102903027}
   m_Father: {fileID: 127652830}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.819, y: -180, z: 0.792}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -603.9298, y: -245.44717}
+  m_AnchoredPosition: {x: -6, y: 94}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &597666892
@@ -4230,13 +4244,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 835175922}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1233953915}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -5353,7 +5367,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1233953918
 Canvas:
   m_ObjectHideFlags: 0
@@ -5888,7 +5902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

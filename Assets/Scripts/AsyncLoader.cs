@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,9 +14,10 @@ public class NewBehaviourScript : MonoBehaviour
         mainMenu.SetActive(false);
         loadingScreen.SetActive(true);
     }
-    IEnumerator LoadLevelAsync (string levelToLoad)
+    IEnumerator LoadLevelAsync(string levelToLoad)
     {
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(levelToLoad);
         return null;
     }
 }
+*/
