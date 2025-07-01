@@ -36,7 +36,7 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(LoadSceneAsync("MainMenu"));
     }
 
-    private IEnumerator LoadSceneAsync(string sceneName)
+ private IEnumerator LoadSceneAsync(string sceneName)
 {
     panelMainMenu?.SetActive(false);
     panelSettings?.SetActive(false);
@@ -45,17 +45,17 @@ public class MainMenu : MonoBehaviour
     if (loadingText != null)
         loadingText.text = "Cargando...";
 
+    yield return new WaitForSeconds(0.5f); // 🔹 Espera antes de comenzar la animación
+
     AsyncOperation operacion = SceneManager.LoadSceneAsync(sceneName);
     operacion.allowSceneActivation = false;
 
-    float progresoVisual = 0.5f;
+    float progresoVisual = 0f;
 
     while (!operacion.isDone)
     {
-
         float progresoTarget = Mathf.Clamp01(operacion.progress / 0.9f);
 
-        // Animar suavemente la barra con Lerp
         progresoVisual = Mathf.MoveTowards(progresoVisual, progresoTarget, Time.deltaTime * 0.5f);
 
         if (sliderCarga != null)
@@ -63,14 +63,16 @@ public class MainMenu : MonoBehaviour
 
         if (loadingText != null)
             loadingText.text = $"Cargando... {Mathf.RoundToInt(progresoVisual * 100)}%";
+
         if (progresoVisual >= 1f && operacion.progress >= 0.9f)
         {
-            yield return new WaitForSeconds(0.2f); 
-            operacion.allowSceneActivation = true;
+            yield return operacion.allowSceneActivation = true;// Pausa final opcional
+            
         }
 
         yield return null;
     }
 }
+
 
 } 
