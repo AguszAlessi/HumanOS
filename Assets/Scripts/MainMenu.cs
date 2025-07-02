@@ -29,7 +29,7 @@ public class MainMenu : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
-        StartCoroutine(LoadSceneAsync("MainMenu"));
+        SceneManager.LoadScene("MainMenu");
     }
 
     private IEnumerator LoadSceneAsync(string sceneName)
