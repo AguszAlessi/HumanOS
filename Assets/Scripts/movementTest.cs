@@ -1,59 +1,52 @@
 using UnityEngine;
 
-public class PlayerJump : MonoBehaviour
+// Jetpack vertical para CharacterController + FirstPersonLocomotor.
+// Poner en el *mismo* GO que tiene el CharacterController.
+// En FirstPersonLocomotor: Jump Force = 0, Gravity Factor = 0.
+[RequireComponent(typeof(CharacterController))]
+public class JetpackLocomotor : MonoBehaviour
 {
-    public float jumpForce = 5f;          // impulso inicial
-    public float holdForce = 5f;          // fuerza extra mientras se mantiene el botón
-    public float maxHoldTime = 0.5f;      // límite de tiempo de "sostener" (seguridad)
-    public LayerMask groundLayer;
-    public Transform groundCheck;
-    public float groundCheckRadius = 0.2f;
+    [Header("Jetpack")]
+    public float jetpackAccel = 8f;        // aceleración al mantener
+    public float maxJetpackSpeed = 4.5f;   // límite de ascenso
+    public float gravity = 9.81f;          // caída cuando no se pulsa
+    public float maxFallSpeed = 12f;       // límite de caída
+    public OVRInput.Button jetButton = OVRInput.Button.One;
 
-    private Rigidbody rb;
-    private bool isGrounded;
-    private float holdTimer;
+    CharacterController cc;
+    float verticalSpeed;
 
-    void Start()
+    void Awake()
     {
-        rb = GetComponent<Rigidbody>();
-
-        if (groundCheck == null)
-        {
-            GameObject gc = new GameObject("GroundCheck");
-            gc.transform.SetParent(transform);
-            gc.transform.localPosition = Vector3.down * 0.9f;
-            groundCheck = gc.transform;
-        }
+        cc = GetComponent<CharacterController>();
     }
 
     void Update()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
+        // Mantengo lógica/estado aquí para que isGrounded se evalúe a tiempo,
+        // pero NO muevo al controller hasta LateUpdate.
+        bool jetHeld = OVRInput.Get(jetButton, OVRInput.Controller.RTouch);
 
-        // Inicio del salto con botón A (RTouch)
-        if (isGrounded && OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch))
+        // “pegado” al piso cuando estamos grounded y no ascendemos
+        if (cc.isGrounded && verticalSpeed < 0f)
+            verticalSpeed = -1f;
+
+        if (jetHeld)
         {
-            Jump();
-            holdTimer = 0f; // resetea el temporizador del "sostenido"
+            verticalSpeed += jetpackAccel * Time.deltaTime;
+        }
+        else
+        {
+            verticalSpeed -= gravity * Time.deltaTime;
         }
 
-        // Mientras se mantenga el botón, seguir aplicando fuerza hacia arriba
-        if (!isGrounded && OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch))
-        {
-            if (holdTimer < maxHoldTime)
-            {
-                rb.AddForce(Vector3.up * holdForce, ForceMode.Acceleration);
-                holdTimer += Time.deltaTime;
-            }
-        }
-
-        // Al tocar piso, reiniciamos el temporizador
-        if (isGrounded) holdTimer = 0f;
+        verticalSpeed = Mathf.Clamp(verticalSpeed, -maxFallSpeed, maxJetpackSpeed);
     }
 
-    void Jump()
+    void LateUpdate()
     {
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        // Mover DESPUÉS de que el Locomotor movió en XZ
+        Vector3 moveY = new Vector3(0f, verticalSpeed, 0f) * Time.deltaTime;
+        cc.Move(moveY);
     }
 }
