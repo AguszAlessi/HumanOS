@@ -9,7 +9,7 @@ public class IA : MonoBehaviour
     [SerializeField] float speed = 0.01f;
     [SerializeField] float distanceChangePoint = 1f;
     [SerializeField] float rotspeed = 5f;
-    [SerializeField] GameObject Enemigo;
+    [SerializeField] GameObject Corona;
     int currentpoint = 0;
     float range = 500f;
 
@@ -26,9 +26,9 @@ public class IA : MonoBehaviour
         if(ruta1.Length == 0) return;
         Vector3 target = new Vector3(ruta1[currentpoint].transform.position.x, ruta1[currentpoint].transform.position.y, ruta1[currentpoint].transform.position.z);
 
-        Vector3 moveDirection = target - Enemigo.transform.position;
+        Vector3 moveDirection = target - Corona.transform.position;
 
-        Enemigo.transform.rotation = Quaternion.Slerp(Enemigo.transform.rotation, Quaternion.LookRotation(moveDirection), rotspeed * Time.deltaTime);
+        Corona.transform.rotation = Quaternion.Slerp(Corona.transform.rotation, Quaternion.LookRotation(moveDirection), rotspeed * Time.deltaTime);
 
         if(moveDirection.magnitude < distanceChangePoint)
         {
@@ -38,17 +38,15 @@ public class IA : MonoBehaviour
                 currentpoint = 0;
             }
         }
-        Enemigo.transform.Translate(0, 0, speed* Time.deltaTime);      
+        Corona.transform.Translate(0, 0, speed* Time.deltaTime);      
     }
 
-     private void Attack()
+    private void Attack()
     {
-        Vector3 target = new Vector3(CameraRig.transform.position.x, Enemigo.transform.position.y, CameraRig.transform.position.z);
-        Vector3 moveDirection = target - Enemigo.transform.position;
-        Enemigo.transform.rotation = Quaternion.Slerp(Enemigo.transform.rotation, Quaternion.LookRotation(moveDirection), rotspeed * Time.deltaTime);
-        Enemigo.transform.Translate(0, 0, speed * Time.deltaTime);
-
-
+        Vector3 target = new Vector3(CameraRig.transform.position.x, Corona.transform.position.y, CameraRig.transform.position.z);
+        Vector3 moveDirection = target - Corona.transform.position;
+        Corona.transform.rotation = Quaternion.Slerp(Corona.transform.rotation, Quaternion.LookRotation(moveDirection), rotspeed * Time.deltaTime);
+        Corona.transform.Translate(0, 0, speed * Time.deltaTime);
     }
 
     
