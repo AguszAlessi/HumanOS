@@ -33,6 +33,9 @@ TagManager:
   - Antivirus
   - VirusCollision
   - ArteryModel
+  - projectile
+  - FxTemporaire
+  - point
   layers:
   - Default
   - TransparentFX
