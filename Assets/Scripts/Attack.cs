@@ -11,7 +11,7 @@ public class Attack : MonoBehaviour
             if (other.CompareTag("Player"))
             {
                 ia.enemyState = IA.EnemyState.ATACAR;
-                gameObject.GetComponent<Renderer>().material.color = Color.red;
+
             }
         }
     

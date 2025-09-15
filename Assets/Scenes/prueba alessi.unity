@@ -4475,7 +4475,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.46086568
+  m_Radius: 0.7
   m_Center: {x: 0.00036276874, y: -0.003919139, z: -0.000000014901161}
 --- !u!114 &801285833
 MonoBehaviour:
@@ -5845,7 +5845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CameraRig: {fileID: 1767347694}
-  speed: 5
+  speed: 3
   distanceChangePoint: 1
   rotspeed: 5
   Corona: {fileID: 801285826}
