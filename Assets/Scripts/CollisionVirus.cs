@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class CollisionVirus : MonoBehaviour
 {
@@ -21,12 +22,13 @@ public class CollisionVirus : MonoBehaviour
         if (collision.gameObject.name == "Antivirus")
         {
             Destroy(virus);
-            SceneManager.LoadScene("Victory");
+            GetComponent<VirusInfoPanel>()?.ShowPanel();
+            Console.WriteLine("choque");
         }
     }
 
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        //SceneManager.LoadScene("MainMenu");
     }
 }
