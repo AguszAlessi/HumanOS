@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        _balls.Clear();
         _balls.AddRange(FindObjectsByType<ClickableBall>(FindObjectsInactive.Exclude, FindObjectsSortMode.None));
         foreach (var b in _balls)
             if (b && !b.gameManager) b.gameManager = this;
@@ -38,7 +39,11 @@ public class GameManager : MonoBehaviour
 
     public void ReportBallClicked(ClickableBall ball)
     {
-        _remaining = Mathf.Max(0, _remaining - 1);
+        if (ball && _balls.Contains(ball))
+        {
+            _balls.Remove(ball);
+            _remaining = Mathf.Max(0, _balls.Count);
+        }
 
         if (floatingBubblePrefab && ball)
         {
@@ -49,7 +54,8 @@ public class GameManager : MonoBehaviour
             if (tmp)
             {
                 string msg = (_remaining == 1) ? "Queda 1 pelota" : $"Quedan {_remaining} pelotas";
-                tmp.text = msg; // siempre muestra cuántas faltan (incluye 0)
+                if (_remaining == 0) msg = "¡Todas las pelotas clickeadas!";
+                tmp.text = msg;
             }
 
             if (_cam)
