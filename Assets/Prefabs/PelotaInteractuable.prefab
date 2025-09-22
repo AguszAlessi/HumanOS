@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6264074820967388526
+--- !u!1 &7432823860043389676
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,15 +8,14 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8239186603847024977}
-  - component: {fileID: 975110774147608431}
-  - component: {fileID: 7269656080544197492}
-  - component: {fileID: 3391031849998064921}
-  - component: {fileID: 3835372591319180565}
-  - component: {fileID: 4895369999196706594}
-  - component: {fileID: 3216202883314619959}
-  - component: {fileID: 5482145549157703859}
-  - component: {fileID: 7884681713770731530}
+  - component: {fileID: 6073083541257724754}
+  - component: {fileID: 976006433155070857}
+  - component: {fileID: 7057864194586494920}
+  - component: {fileID: 7592653935142080599}
+  - component: {fileID: 3966193773947074967}
+  - component: {fileID: 2561671226749469030}
+  - component: {fileID: 7842970235308603500}
+  - component: {fileID: 5754690850161007290}
   m_Layer: 0
   m_Name: PelotaInteractuable
   m_TagString: Untagged
@@ -24,36 +23,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8239186603847024977
+--- !u!4 &6073083541257724754
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6264074820967388526}
+  m_GameObject: {fileID: 7432823860043389676}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.0038834, y: 3.1693377, z: -3.8686936}
+  m_LocalPosition: {x: -2.0038834, y: 1.62, z: -3.8686936}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &975110774147608431
+--- !u!33 &976006433155070857
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6264074820967388526}
+  m_GameObject: {fileID: 7432823860043389676}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &7269656080544197492
+--- !u!23 &7057864194586494920
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6264074820967388526}
+  m_GameObject: {fileID: 7432823860043389676}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -89,13 +88,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &3391031849998064921
+--- !u!135 &7592653935142080599
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6264074820967388526}
+  m_GameObject: {fileID: 7432823860043389676}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -110,13 +109,13 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &3835372591319180565
+--- !u!54 &3966193773947074967
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6264074820967388526}
+  m_GameObject: {fileID: 7432823860043389676}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
@@ -132,18 +131,18 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4895369999196706594
+--- !u!114 &2561671226749469030
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6264074820967388526}
+  m_GameObject: {fileID: 7432823860043389676}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
@@ -239,61 +238,39 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3216202883314619959
+--- !u!114 &7842970235308603500
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6264074820967388526}
+  m_GameObject: {fileID: 7432823860043389676}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f6b29ae3c63c1b47a09910e6c107862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRenderer: {fileID: 7269656080544197492}
-  glowPulse: {fileID: 5482145549157703859}
+  targetRenderer: {fileID: 7057864194586494920}
+  glowPulse: {fileID: 5754690850161007290}
   ballGlowMat: {fileID: 2100000, guid: 66dfdc91e3d455742a229b495dd9e5f2, type: 2}
   ballMarkedMat: {fileID: 2100000, guid: eeb8f911f868c3e46a40d15d62233817, type: 2}
   gameManager: {fileID: 0}
   bubbleAnchor: {fileID: 0}
   upOffset: 0.35
---- !u!114 &5482145549157703859
+--- !u!114 &5754690850161007290
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6264074820967388526}
+  m_GameObject: {fileID: 7432823860043389676}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb5e0eb5ade9ac542b6342c2535c735b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRenderer: {fileID: 7269656080544197492}
+  targetRenderer: {fileID: 7057864194586494920}
   emissionColor: {r: 0, g: 1, b: 1, a: 1}
   minIntensity: 0.6
   maxIntensity: 2.2
   pulseSpeed: 1.25
---- !u!114 &7884681713770731530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6264074820967388526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07525681efbca7a4e9643ab3a592ada7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interactorFilters: []
-  _maxInteractors: -1
-  _maxSelectingInteractors: -1
-  _data: {fileID: 0}
-  _pointableElement: {fileID: 0}
-  _rigidbody: {fileID: 3835372591319180565}
-  _grabSource: {fileID: 0}
-  _resetGrabOnGrabsUpdated: 1
-  _physicsGrabbable: {fileID: 0}
-  _movementProvider: {fileID: 0}

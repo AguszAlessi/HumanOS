@@ -1,8 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Pulso de emisión URP mediante MaterialPropertyBlock (apto para Quest 3).
-/// Asignar en el Inspector: targetRenderer, emissionColor, min/maxIntensity, pulseSpeed.
+/// Pulso de emisión URP mediante MaterialPropertyBlock (apto para Quest).
 /// </summary>
 [DisallowMultipleComponent]
 public class GlowPulse : MonoBehaviour
@@ -30,9 +29,10 @@ public class GlowPulse : MonoBehaviour
     {
         if (!targetRenderer) targetRenderer = GetComponentInChildren<Renderer>();
         _mpb = new MaterialPropertyBlock();
-        // Garantiza que la palabra clave de Emission esté activa.
         if (targetRenderer && targetRenderer.sharedMaterial)
             targetRenderer.sharedMaterial.EnableKeyword("_EMISSION");
+
+        Debug.Log($"[GlowPulse] Awake → Renderer:{(targetRenderer!=null)}", this);
     }
 
     void Update()
@@ -40,7 +40,7 @@ public class GlowPulse : MonoBehaviour
         if (!targetRenderer) return;
 
         _t += Time.deltaTime * pulseSpeed;
-        float s = (Mathf.Sin(_t) + 1f) * 0.5f;                   // 0..1
+        float s = (Mathf.Sin(_t) + 1f) * 0.5f; // 0..1
         float intensity = Mathf.Lerp(minIntensity, maxIntensity, s);
         Color emissive = emissionColor * intensity;
 
@@ -49,12 +49,12 @@ public class GlowPulse : MonoBehaviour
         targetRenderer.SetPropertyBlock(_mpb);
     }
 
-    /// <summary>Fuerza un valor fijo de emisión y deja de pulsat (opcional).</summary>
     public void SetEmissionOnce(Color color)
     {
         if (!targetRenderer) return;
         targetRenderer.GetPropertyBlock(_mpb);
         _mpb.SetColor(EmissionColorID, color);
         targetRenderer.SetPropertyBlock(_mpb);
+        Debug.Log("[GlowPulse] Emission seteada una vez", this);
     }
 }

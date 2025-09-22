@@ -6,20 +6,17 @@ using TMPro;
 [DisallowMultipleComponent]
 public class GameManager : MonoBehaviour
 {
-    [Header("Prefab del globo")]
-    [Tooltip("Prefab world-space con TextMeshProUGUI. Sin scripts extra.")]
+    [Header("Prefab del globo (World Space, con TextMeshProUGUI)")]
     public GameObject floatingBubblePrefab;
 
     [Header("FX Globo")]
-    [Tooltip("Segundos visibles antes del fade.")]
     public float bubbleLife = 1.2f;
-    [Tooltip("Duración del fade-out.")]
     public float bubbleFade = 0.5f;
-    [Tooltip("Altura extra sobre el anchor de la pelota.")]
     public float bubbleExtraUp = 0.05f;
 
-    List<ClickableBall> _balls = new List<ClickableBall>();
+    readonly List<ClickableBall> _balls = new List<ClickableBall>();
     int _remaining;
+    int _total;
     Camera _cam;
 
     void Awake()
@@ -34,34 +31,51 @@ public class GameManager : MonoBehaviour
         foreach (var b in _balls)
             if (b && !b.gameManager) b.gameManager = this;
 
-        _remaining = _balls.Count;
+        _total = _balls.Count;
+        _remaining = _total;
+
+        Debug.Log($"[GameManager] Detectadas {_total} pelotas.");
+        if (!floatingBubblePrefab)
+            Debug.LogWarning("[GameManager] 'floatingBubblePrefab' no asignado. No se verá el 1/3 sobre la pelota.");
     }
 
     public void ReportBallClicked(ClickableBall ball)
     {
+        if (_remaining <= 0)
+        {
+            Debug.LogWarning("[GameManager] Ya no quedaban pelotas por contar.");
+            return;
+        }
+
         if (ball && _balls.Contains(ball))
         {
             _balls.Remove(ball);
             _remaining = Mathf.Max(0, _balls.Count);
         }
+        int clicked = _total - _remaining; // 1..N
 
+        Debug.Log($"[GameManager] Click registrada. Progreso: {clicked}/{_total}. Quedan: {_remaining}");
+
+        // Spawnea texto 1/3 encima de la pelota
         if (floatingBubblePrefab && ball)
         {
             Vector3 pos = ball.GetBubbleWorldPos() + Vector3.up * bubbleExtraUp;
             var go = Instantiate(floatingBubblePrefab, pos, Quaternion.identity);
 
             var tmp = go.GetComponentInChildren<TextMeshProUGUI>();
-            if (tmp)
-            {
-                string msg = (_remaining == 1) ? "Queda 1 pelota" : $"Quedan {_remaining} pelotas";
-                if (_remaining == 0) msg = "¡Todas las pelotas clickeadas!";
-                tmp.text = msg;
-            }
+            if (tmp) tmp.text = $"{clicked}/{_total}";
+            else Debug.LogWarning("[GameManager] El prefab no tiene TextMeshProUGUI.");
 
             if (_cam)
                 go.transform.forward = (_cam.transform.position - go.transform.position).normalized;
 
             StartCoroutine(FadeAndDestroy(go));
+        }
+
+        if (_remaining == 0)
+        {
+            Debug.Log("[GameManager] ¡Nivel completado! Todas las pelotas fueron clickeadas.");
+            // TODO: acá podrías llamar a tu siguiente lógica de nivel/puerta/etc.
         }
     }
 
