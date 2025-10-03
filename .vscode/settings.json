@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "HUMANos.sln"
+    "dotnet.defaultSolution": "HumanOS.sln"
 }
