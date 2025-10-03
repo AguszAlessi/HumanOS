@@ -1,18 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Attack : MonoBehaviour
+public class AttackPlayer : MonoBehaviour
 {
-    [SerializeField] IA ia;
-   
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag("Player"))
-            {
-                ia.enemyState = IA.EnemyState.ATACAR;
+    public IA ia;
+    public Slider playerHealthBar;
+    public float damageAmount = 10f;
+    public float attackInterval = 1f;
+    public float attackRange = 2f; // Distancia para atacar al jugador
+    public Transform player;
 
+    private float attackTimer = 0f;
+
+    void Update()
+    {
+        if (ia.enemyState == IA.EnemyState.ATACAR && player != null && playerHealthBar != null)
+        {
+            float distance = Vector3.Distance(transform.position, player.position);
+            if (distance <= attackRange)
+            {
+                attackTimer += Time.deltaTime;
+                if (attackTimer >= attackInterval)
+                {
+                    playerHealthBar.value -= damageAmount;
+                    attackTimer = 0f;
+                }
+            }
+            else
+            {
+                attackTimer = 0f;
             }
         }
-    
+    }
 }
