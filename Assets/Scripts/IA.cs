@@ -77,10 +77,11 @@ private void Attack()
 
 private void Update()
 {
-    // detección automática del jugador
+    if (Corona == null || CameraRig == null) return; // 👈 chequeo antes de acceder
+
     float distanceToPlayer = Vector3.Distance(Corona.transform.position, CameraRig.transform.position);
 
-    if (distanceToPlayer <= 6f) // 👈 rango de detección (ajustalo a gusto)
+    if (distanceToPlayer <= 6f) 
     {
         enemyState = EnemyState.ATACAR;
     }
@@ -91,6 +92,7 @@ private void Update()
 
     EnemyStateFunction();
 }
+
 
 
     private void EnemyStateFunction()
