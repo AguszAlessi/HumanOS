@@ -27,7 +27,7 @@ void OnCollisionStay(Collision collision)
 
                 if (healthBar.value <= 0)
                 {
-                    SceneManager.LoadScene("MainMenu");
+                    SceneManager.LoadScene("Defeat");
                 }
             }
 

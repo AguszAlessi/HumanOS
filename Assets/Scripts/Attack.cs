@@ -9,9 +9,16 @@ public class AttackPlayer : MonoBehaviour
     public float attackInterval = 1f;
     public float attackRange = 2f; // Distancia para atacar al jugador
     public Transform player;
-
+    public AudioClip hitSound;
+    private AudioSource audioSource;
     private float attackTimer = 0f;
 
+   void Start()
+    {
+
+    audioSource = GetComponent<AudioSource>();
+    
+    }
     void Update()
     {
         if (ia.enemyState == IA.EnemyState.ATACAR && player != null && playerHealthBar != null)
@@ -24,6 +31,11 @@ public class AttackPlayer : MonoBehaviour
                 {
                     playerHealthBar.value -= damageAmount;
                     attackTimer = 0f;
+                     if (hitSound != null && audioSource != null)
+                    {
+                        audioSource.PlayOneShot(hitSound);
+                    }
+
                 }
             }
             else

@@ -21511,6 +21511,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   virus: {fileID: 1947559845}
   victoryPanel: {fileID: 0}
+  virusHealthBar: {fileID: 0}
+  damageAmount: 10
 --- !u!1 &1954389357
 GameObject:
   m_ObjectHideFlags: 0
