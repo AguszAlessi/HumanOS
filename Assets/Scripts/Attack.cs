@@ -4,38 +4,41 @@ using UnityEngine.UI;
 public class AttackPlayer : MonoBehaviour
 {
     public IA ia;
-    public Slider playerHealthBar;
+    public PlayerLife playerLife;
+    public Transform player;
     public float damageAmount = 10f;
     public float attackInterval = 1f;
-    public float attackRange = 2f; // Distancia para atacar al jugador
-    public Transform player;
+    public float attackRange = 2f;
     public AudioClip hitSound;
+
     private AudioSource audioSource;
     private float attackTimer = 0f;
 
-   void Start()
+    void Start()
     {
-
-    audioSource = GetComponent<AudioSource>();
-    
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
     }
+
     void Update()
     {
-        if (ia.enemyState == IA.EnemyState.ATACAR && player != null && playerHealthBar != null)
+        if (ia.enemyState == IA.EnemyState.ATACAR && player != null && playerLife != null)
         {
             float distance = Vector3.Distance(transform.position, player.position);
+
             if (distance <= attackRange)
             {
                 attackTimer += Time.deltaTime;
+
                 if (attackTimer >= attackInterval)
                 {
-                    playerHealthBar.value -= damageAmount;
-                    attackTimer = 0f;
-                     if (hitSound != null && audioSource != null)
-                    {
-                        audioSource.PlayOneShot(hitSound);
-                    }
+                    playerLife.TakeDamage(damageAmount);
 
+                    if (hitSound != null)
+                        audioSource.PlayOneShot(hitSound);
+
+                    attackTimer = 0f;
                 }
             }
             else

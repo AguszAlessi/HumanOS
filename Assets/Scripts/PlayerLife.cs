@@ -4,44 +4,40 @@ using UnityEngine.SceneManagement;
 
 public class PlayerLife : MonoBehaviour
 {
-    public Slider healthBar;
-    public float damageAmount = 10f;
-    public float damageInterval = 1f; // Tiempo entre daños en segundos
+    [Header("Salud")]
+    public Image healthCircle;
+    public float maxHealth = 100f;
+    [HideInInspector] public float currentHealth;
 
-    private float damageTimer = 0f;
+    [Header("Colores")]
+    public Color fullColor = Color.green;
+    public Color lowColor = Color.red;
 
-void OnCollisionStay(Collision collision)
-{
-    if (collision.gameObject.CompareTag("Virus"))
+    void Start()
     {
-        Debug.Log("Jugador está en contacto con el virus");
+        currentHealth = maxHealth;
+        UpdateCircle();
+    }
 
-        damageTimer += Time.deltaTime;
+    public void TakeDamage(float amount)
+    {
+        currentHealth -= amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        UpdateCircle();
 
-        if (damageTimer >= damageInterval)
+        if (currentHealth <= 0)
         {
-            if (healthBar != null)
-            {
-                healthBar.value -= damageAmount;
-                Debug.Log("Vida actual: " + healthBar.value);
-
-                if (healthBar.value <= 0)
-                {
-                    SceneManager.LoadScene("Defeat");
-                }
-            }
-
-            damageTimer = 0f;
+            SceneManager.LoadScene("Defeat");
         }
     }
-}
 
-
-    void OnCollisionExit(Collision collision)
+    private void UpdateCircle()
     {
-        if (collision.gameObject.CompareTag("Virus"))
+        if (healthCircle != null)
         {
-            damageTimer = 0f; // reset al separarse
+            float fill = currentHealth / maxHealth;
+            healthCircle.fillAmount = fill;
+            healthCircle.color = Color.Lerp(lowColor, fullColor, fill);
         }
     }
 }
