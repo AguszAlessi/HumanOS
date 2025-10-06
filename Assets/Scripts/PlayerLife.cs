@@ -4,9 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class PlayerLife : MonoBehaviour
 {
+    
     [Header("Salud")]
     public Image healthCircle;
     public float maxHealth = 100f;
+
     [HideInInspector] public float currentHealth;
 
     [Header("Colores")]
@@ -17,6 +19,7 @@ public class PlayerLife : MonoBehaviour
     {
         currentHealth = maxHealth;
         UpdateCircle();
+        
     }
 
     public void TakeDamage(float amount)
