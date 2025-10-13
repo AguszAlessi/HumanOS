@@ -3,7 +3,32 @@ guid: 3c80b5714f2dc7047ba4f767fecd1265
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: stomach
+    second: {fileID: 2100000, guid: 07c2795a3fc76224f9e44b842ccf3ff0, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: stomach_Div_01_BaseColor.stomach
+    second: {fileID: 2800000, guid: ee00c11f25714d348885e00d8f2fc4af, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: stomach_Div_01_Metalness.stomach
+    second: {fileID: 2800000, guid: 165044c7e7d72944586411666d140b95, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: stomach_Div_01_Normal.stomach
+    second: {fileID: 2800000, guid: 291235dedecd36441af1c4ae0f7182f3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: stomach_Div_01_Roughness.stomach
+    second: {fileID: 2800000, guid: b3097da90e68b4149b16ba9af076f5ba, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
