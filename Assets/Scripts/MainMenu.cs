@@ -6,7 +6,6 @@ using System.Collections;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject panelMainMenu;
-    [SerializeField] private GameObject panelSettings;
     [SerializeField] private GameObject loadingPanel;
 
     [SerializeField] private Slider sliderCarga;
@@ -15,7 +14,6 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         panelMainMenu?.SetActive(true);
-        panelSettings?.SetActive(false);
         loadingPanel?.SetActive(false);
 
         if (loadingText != null)
@@ -35,7 +33,6 @@ public class MainMenu : MonoBehaviour
     private IEnumerator LoadSceneAsync(string sceneName)
     {
         panelMainMenu?.SetActive(false);
-        panelSettings?.SetActive(false);
         loadingPanel?.SetActive(true);
 
         if (loadingText != null)

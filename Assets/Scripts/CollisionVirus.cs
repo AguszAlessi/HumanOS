@@ -8,6 +8,9 @@ public class CollisionVirus : MonoBehaviour
 {
     public GameObject virus;
     public GameObject victoryPanel; // Panel con blur y mensaje
+    public Slider virusHealthBar;   
+    public float damageAmount = 10f;
+
 
     private void Start()
     {
@@ -17,13 +20,27 @@ public class CollisionVirus : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+ private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.name == "Antivirus")
         {
-            Destroy(virus);
-            GetComponent<VirusInfoPanel>()?.ShowPanel();
-            Console.WriteLine("choque");
+            if (virusHealthBar != null)
+            {
+                virusHealthBar.value -= damageAmount;
+                
+                if (virusHealthBar.value <= 0)
+                {
+                    // Busca el hijo CanvasPanelVariant y lo separa del virus
+                    Transform panel = transform.Find("CanvasPanel Variant");
+                    if (panel != null)
+                    {
+                        panel.SetParent(null);
+                        panel.gameObject.SetActive(true);
+                    }
+                    Destroy(virus);
+                    Console.WriteLine("choque");
+                }
+            }
         }
     }
 

@@ -36,6 +36,7 @@ TagManager:
   - projectile
   - FxTemporaire
   - point
+  - Climbable
   layers:
   - Default
   - TransparentFX

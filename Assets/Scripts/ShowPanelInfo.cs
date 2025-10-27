@@ -1,20 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class VirusInfoPanel : MonoBehaviour
+public class ShowPanelInfo : MonoBehaviour
 {
-    public GameObject infoPanel; // Asigna el panel en el inspector
-
     void Start()
     {
-        if (infoPanel != null)
-            infoPanel.SetActive(false); // Panel desactivado al inicio
+        gameObject.SetActive(false); // Desactiva el propio objeto al inicio
     }
 
     public void ShowPanel()
     {
-        if (infoPanel != null)
-            infoPanel.SetActive(true); // Activa el panel cuando se destruye el virus
+        gameObject.SetActive(true); // Activa el propio objeto cuando se llama
     }
 }
