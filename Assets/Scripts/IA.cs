@@ -16,6 +16,8 @@ public class IA : MonoBehaviour
 
     public enum EnemyState { PATRULLAR, ATACAR }
     [SerializeField] public EnemyState enemyState;
+    Animator anim;
+    Vector3 lastPos;
 
     private void Start()
     {

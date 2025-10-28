@@ -1,6 +1,8 @@
+// AttackPlayer.cs (tu versión + animación)
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
 public class AttackPlayer : MonoBehaviour
 {
     public IA ia;
@@ -14,11 +16,13 @@ public class AttackPlayer : MonoBehaviour
     private AudioSource audioSource;
     private float attackTimer = 0f;
 
+    // NUEVO
+
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
-            audioSource = gameObject.AddComponent<AudioSource>();
+
     }
 
     void Update()
@@ -35,8 +39,7 @@ public class AttackPlayer : MonoBehaviour
                 {
                     playerLife.TakeDamage(damageAmount);
 
-                    if (hitSound != null)
-                        audioSource.PlayOneShot(hitSound);
+                    if (hitSound != null) audioSource.PlayOneShot(hitSound);
 
                     attackTimer = 0f;
                 }
