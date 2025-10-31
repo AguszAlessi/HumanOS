@@ -19,6 +19,7 @@ public class CollisionVirus : MonoBehaviour
 
     private Animator animator;
     private bool canTakeHit = true;
+    private bool isDead = false;
 
     private void Awake()
     {
@@ -33,22 +34,24 @@ public class CollisionVirus : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    // Cambia OnCollisionEnter por OnTriggerEnter para usar el trigger de la aguja
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.name == "Antivirus")
+        // Solo la aguja (collider hijo) puede hacer daño
+        // Recomendado: ponle un tag especial a la aguja, por ejemplo "NeedleTip"
+        if (!isDead && other.CompareTag("NeedleTip"))
         {
             if (virusHealthBar != null && canTakeHit)
             {
                 virusHealthBar.value -= damageAmount;
 
-                // Si la vida sigue arriba de 0, reproducir TakeHit con delay
                 if (virusHealthBar.value > 0)
                 {
                     StartCoroutine(HandleTakeHit());
                 }
-                // Si la vida llegó a 0 o menos, reproducir Death y destruir
                 else
                 {
+                    isDead = true;
                     StartCoroutine(HandleDeath());
                 }
             }
@@ -65,6 +68,22 @@ public class CollisionVirus : MonoBehaviour
 
     private IEnumerator HandleDeath()
     {
+        // Anula todas las animaciones activas excepto Death
+        if (animator != null)
+        {
+            foreach (var p in animator.parameters)
+            {
+                if (p.name != "Death")
+                {
+                    if (p.type == AnimatorControllerParameterType.Bool)
+                        animator.SetBool(p.name, false);
+                    else if (p.type == AnimatorControllerParameterType.Int)
+                        animator.SetInteger(p.name, 0);
+                    else if (p.type == AnimatorControllerParameterType.Float)
+                        animator.SetFloat(p.name, 0f);
+                }
+            }
+        }
         // Dispara el parámetro de muerte
         TriggerAnimatorParameter("Death");
 

@@ -37,6 +37,7 @@ TagManager:
   - FxTemporaire
   - point
   - Climbable
+  - NeedleTip
   layers:
   - Default
   - TransparentFX
