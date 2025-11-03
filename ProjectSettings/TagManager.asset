@@ -38,6 +38,7 @@ TagManager:
   - point
   - Climbable
   - NeedleTip
+  - Breaker
   layers:
   - Default
   - TransparentFX
