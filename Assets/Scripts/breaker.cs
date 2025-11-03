@@ -22,7 +22,7 @@ public class Breaker : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Breaker")
+        if (other.gameObject.tag == "VirusCollision" )
         {
             isBroken = true;
 

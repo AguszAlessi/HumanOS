@@ -39,6 +39,8 @@ TagManager:
   - Climbable
   - NeedleTip
   - Breaker
+  - leftcontroller
+  - rightcontroller
   layers:
   - Default
   - TransparentFX
