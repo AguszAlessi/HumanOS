@@ -1,62 +1,72 @@
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
+using System.Collections.Generic;
 
-[RequireComponent(typeof(CharacterController))]
 public class ClimbProvider : MonoBehaviour
 {
-    [Header("Referencias")]
-    [SerializeField] Transform rigRoot;              // El root del Camera Rig
-    [SerializeField] GameObject locomotor;           // (Opcional) arrastrá el "Locomotor" del bloque OVRInteractionComprehensive
+    [Header("XR Rig")]
+    public Transform rigRoot; // debería apuntar a TrackingSpace
+    public CharacterController characterController; // puede ser null si no usás uno explícito
+    public GameObject locomotionBlock; // opcional: el bloque de locomoción del camera rig
 
-    private CharacterController controller;
-    private readonly List<Transform> activeHands = new();
-    private readonly Dictionary<Transform, Vector3> lastPos = new();
+    [Header("Debug")]
+    public bool debugLogs = true;
 
-    void Start()
+    int _handsGripping = 0;
+    bool _isClimbing = false;
+
+    public void RequestBeginClimb()
     {
-        controller = GetComponent<CharacterController>();
-        if (rigRoot == null) rigRoot = transform;
-    }
-
-    void Update()
-    {
-        if (activeHands.Count == 0) return;
-
-        Vector3 totalDelta = Vector3.zero;
-        foreach (Transform hand in activeHands)
+        _handsGripping++;
+        if (_handsGripping == 1)
         {
-            Vector3 current = hand.position;
-            Vector3 delta = current - lastPos[hand];
-            totalDelta += delta;
-            lastPos[hand] = current;
+            SetClimbing(true);
         }
 
-        if (totalDelta.sqrMagnitude > 0.000001f)
-            controller.Move(-totalDelta / activeHands.Count);
+        if (debugLogs)
+            Debug.Log($"[CLIMB PROVIDER] RequestBeginClimb → Hands now: {_handsGripping}");
     }
 
-    public void BeginClimb(Transform hand)
+    public void RequestEndClimb()
     {
-        if (!activeHands.Contains(hand))
+        _handsGripping--;
+        _handsGripping = Mathf.Max(0, _handsGripping);
+
+        if (_handsGripping == 0)
         {
-            activeHands.Add(hand);
-            lastPos[hand] = hand.position;
+            SetClimbing(false);
         }
 
-        // Desactiva locomoción mientras escalás
-        if (locomotor != null) locomotor.SetActive(false);
+        if (debugLogs)
+            Debug.Log($"[CLIMB PROVIDER] RequestEndClimb → Hands now: {_handsGripping}");
     }
 
-    public void EndClimb(Transform hand)
+    void SetClimbing(bool climbing)
     {
-        if (activeHands.Contains(hand))
+        _isClimbing = climbing;
+
+        if (characterController)
         {
-            activeHands.Remove(hand);
-            lastPos.Remove(hand);
+            characterController.enabled = !climbing;
         }
 
-        // Si no queda ninguna mano trepando, reactiva locomoción
-        if (activeHands.Count == 0 && locomotor != null)
-            locomotor.SetActive(true);
+        if (locomotionBlock)
+        {
+            locomotionBlock.SetActive(!climbing);
+            Debug.Log($"[CLIMB PROVIDER] {(climbing ? "Disabling" : "Enabling")} locomotion: {locomotionBlock.name}");
+        }
+
+        Debug.Log($"[CLIMB PROVIDER] SetClimbing = {climbing}");
     }
+
+    public void MoveRigBy(Vector3 movement)
+    {
+        if (rigRoot != null && movement != Vector3.zero)
+        {
+            rigRoot.position += movement;
+            Debug.Log($"[CLIMB PROVIDER] Moving rig by {movement:F3}");
+        }
+    }
+
+    public bool IsClimbing => _isClimbing;
 }
